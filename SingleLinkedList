@@ -29,6 +29,33 @@ class SingleLinkedList {
             temp = temp.next;
            temp.next = newNode;
     }
+    public void insertAtPosition(int data, int position) {
+        if (position < 0) {
+            System.out.println("Position Should be >= 0");
+            return;
+        }
+        Node newNode = new Node(data);
+
+        if (position == 0) {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+        Node temp = head;
+        int count = 0;
+
+        while (temp != null && count < position - 1) {
+            temp = temp.next;
+            count++;
+        }
+        if (temp == null) {
+            System.out.println("Position out of Bounds");
+            return;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+
+    }
 
 
     public void display() {
@@ -51,6 +78,9 @@ class SingleLinkedList {
         list.insertAtEnd(40);
         list.insertAtEnd(50);
 
+        list.insertAtPosition(25,3);
+        list.insertAtPosition(5,1);
+        list.insertAtPosition(60,10);
         list.display();
     }
 }
